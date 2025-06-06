@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import InputEmail from "@/components/inputs/InputEmail";
 import InputPassword from "@/components/inputs/InputPassword";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,6 +15,9 @@ export default function LoginPage() {
   const fakeUser = {
     email: "teste@tropa.digital",
     senha: "123456",
+    nameUser: "Kaique Steck",
+    role: "Administrador",
+    picture: "/images/user.png",
   };
 
   const validateEmail = (email) => {
@@ -37,7 +40,13 @@ export default function LoginPage() {
     if (email === fakeUser.email && senha === fakeUser.senha) {
       localStorage.setItem(
         "user",
-        JSON.stringify({ email, token: "token-fake-" + Date.now() })
+        JSON.stringify({
+          email,
+          nameUser: fakeUser.nameUser,
+          role: fakeUser.role,
+          picture: fakeUser.picture,
+          token: "token-fake-" + Date.now(),
+        })
       );
       setError("");
       router.push("/dashboard");
@@ -81,7 +90,9 @@ export default function LoginPage() {
 
           {error && <p className="text-red-500 text-xs">{error}</p>}
 
-          <Button type="submit">Enviar</Button>
+          <Button type="submit" fullWidth={true}>
+            Enviar
+          </Button>
         </form>
       </div>
 
