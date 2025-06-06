@@ -27,8 +27,8 @@ export default function Sidebar({ user }) {
     <>
       <aside
         className={`${
-          open ? "left-0" : "-left-full"
-        } max-mobile:absolute block w-[210px] bg-white p-7 h-full transtion z-[9999]`}
+          open ? "max-mobile:left-0" : "max-mobile:-left-full"
+        } max-mobile:absolute max-mobile:h-full relative w-[210px] bg-white p-7 flex flex-col justify-between transtion z-[9999]`}
       >
         <div className="flex flex-col gap-8">
           <img

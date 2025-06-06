@@ -2,19 +2,19 @@
 
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function DashboardLayout({ children }) {
-  const router = useRouter();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!localStorage.getItem("user")) {
-      router.replace("/login");
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) return null;
 
   return (
     <div className="flex min-h-screen">
